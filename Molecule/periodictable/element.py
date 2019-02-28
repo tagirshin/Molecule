@@ -90,10 +90,10 @@ class Element(ABC):
 
     @property
     @abstractmethod
-    def common_valences(self) -> Tuple[Tuple[int, int]]:
+    def common_valences(self) -> Tuple[Tuple[int, int], ...]:
         """
         Returns tuple of tuples of common valences and matching multiplicity of element
-        :return (valence: int, multiplicity: int)
+        :return ((valence1: int, multiplicity1: int), (valence2: int, multiplicity2: int), ...)
         """
 
 
@@ -101,7 +101,8 @@ class Element(ABC):
     @abstractmethod
     def valences_exceptions(self) -> Tuple[Tuple[int, int, Tuple[Tuple[int, str], ...]]]:
         """
-        Returns tuple of tuples of exceptions in valencies and matching multiplicity of element
+        Returns tuple of tuples of exceptions in valencies and matching multiplicity of element. If there no
+        exceptions in valencies, returns empty tuple.
         :return (valence: int, multiplicity: int, ((bond1: int, atom1: str), (bond2: int, atom2: str), ...))
         """
 
