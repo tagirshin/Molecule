@@ -17,7 +17,7 @@
 #  along with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 from abc import ABC, abstractmethod
-from typing import Optional, Tuple, Mapping
+from typing import Optional, Tuple
 
 
 class Element(ABC):
@@ -101,9 +101,9 @@ class Element(ABC):
     @abstractmethod
     def valences_exceptions(self) -> Tuple[Tuple[int, int, Tuple[Tuple[int, str], ...]]]:
         """
-        Returns tuple of tuples of exceptions in valencies and matching multiplicity of element. If there no
+        Returns tuple of tuples of exceptions in charges and matching multiplicity of element. If there no
         exceptions in valencies, returns empty tuple.
-        :return (valence: int, multiplicity: int, ((bond1: int, atom1: str), (bond2: int, atom2: str), ...))
+        :return (charge: int, multiplicity: int, ((bond1: int, atom1: str), (bond2: int, atom2: str), ...))
         """
 
     @property
@@ -125,25 +125,4 @@ class Element(ABC):
     def max_isotope(self) -> int:
         """
         elements heaviest isotope on Earth
-        """
-
-    @property
-    @abstractmethod
-    def max_charge(self) -> int:
-        """
-        maximum charge of atom
-        """
-
-    @property
-    @abstractmethod
-    def min_charge(self) -> int:
-        """
-        minimum charge of atom
-        """
-
-    @property
-    @abstractmethod
-    def max_multiplicity(self) -> int:
-        """
-        maximum multiplicity of atom
         """
