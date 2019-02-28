@@ -90,6 +90,20 @@ class Element(ABC):
 
     @property
     @abstractmethod
+    def common_valences(self) -> tuple:
+        """
+        Returns tuple of common valences of element
+        """
+
+    @property
+    @abstractmethod
+    def valences_exceptions(self) -> tuple:
+        """
+        Returns tuple of exceptions in valencies of element
+        """
+
+    @property
+    @abstractmethod
     def common_isotope(self) -> int:
         """
         elements common isotope on Earth
