@@ -17,7 +17,7 @@
 #  along with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Optional, Tuple, Mapping
 
 
 class Element(ABC):
@@ -90,16 +90,19 @@ class Element(ABC):
 
     @property
     @abstractmethod
-    def common_valences(self) -> tuple:
+    def common_valences(self) -> Tuple[Tuple[int, int]]:
         """
-        Returns tuple of common valences of element
+        Returns tuple of tuples of common valences and matching multiplicity of element
+        :return (valence: int, multiplicity: int)
         """
+
 
     @property
     @abstractmethod
-    def valences_exceptions(self) -> tuple:
+    def valences_exceptions(self) -> Tuple[Tuple[int, int, Tuple[Tuple[int, str], ...]]]:
         """
-        Returns tuple of exceptions in valencies of element
+        Returns tuple of tuples of exceptions in valencies and matching multiplicity of element
+        :return (valence: int, multiplicity: int, ((bond1: int, atom1: str), (bond2: int, atom2: str), ...))
         """
 
     @property
