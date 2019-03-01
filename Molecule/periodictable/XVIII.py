@@ -47,11 +47,11 @@ class Rn(Element, PeriodVI, GroupXVIII):
 
     @property
     def max_isotope(self):
-        return 231
+        return 222
 
     @property
     def min_isotope(self):
-        return 193
+        return 222
 
     @property
     def common_valences(self):
