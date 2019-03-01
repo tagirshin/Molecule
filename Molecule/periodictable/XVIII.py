@@ -62,9 +62,7 @@ class Rn(Element, PeriodVI, GroupXVIII):
         return ()
 
 
-
 class Og(Element, PeriodVII, GroupXVIII):
-
     @property
     def atomic_number(self):
         return 118
