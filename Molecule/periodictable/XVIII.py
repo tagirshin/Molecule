@@ -29,7 +29,6 @@ class He(Element, PeriodI, GroupXVIII):
 
 
 class Rn(Element, PeriodVI, GroupXVIII):
-
     @property
     def atomic_number(self):
         return 86
