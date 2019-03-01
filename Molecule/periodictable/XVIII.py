@@ -95,4 +95,4 @@ class Og(Element, PeriodVII, GroupXVIII):
     def valences_exeptions(self):
         return ()
 
-__all__ = ['GroupXVIII', 'He']
+__all__ = ['GroupXVIII', 'He', 'Rn', 'Og']
