@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #
 #  Copyright 2019 Ramil Nugmanov <stsouko@live.ru>
+#  Copyright 2019 Dayana Bashirova <dayana.bashirova@yandex.ru>
+#  Copyright 2019 Tagir Akhmetshin <tagirshin@gmail.com>
 #  This file is part of Molecule.
 #
 #  Molecule is free software; you can redistribute it and/or modify
@@ -51,11 +53,16 @@ class Po(Element, PeriodVI, GroupXVII):
 
     @property
     def common_valences(self):
-        return (0, 2), (2, 1), (4, 1)
+        return (0, 2), (2, 1)
 
     @property
     def valences_exceptions(self):
-        return ()
+        return ((0, 1, ((2, 'O'), (2, 'O'), (2, 'O'))),
+                (0, 1, ((2, 'O'), (2, 'O'))),
+                (0, 1, ((1, 'Cl'), (1, 'Cl'), (1, 'Cl'), (1, 'Cl'))),
+                (0, 1, ((1, 'Br'), (1, 'Br'), (1, 'Br'), (1, 'Br'))),
+                (0, 1, ((1, 'I'), (1, 'I'), (1, 'I'), (1, 'I'))),
+                (0, 1, ((1, 'I'), (1, 'I'), (1, 'I'), (1, 'I'))))
 
 
 class Lv(Element, PeriodVII, GroupXVII):
@@ -85,7 +92,7 @@ class Lv(Element, PeriodVII, GroupXVII):
 
     @property
     def common_valences(self):
-        return (0, 1),
+        return ()
 
     @property
     def valences_exceptions(self):
