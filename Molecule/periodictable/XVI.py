@@ -53,7 +53,7 @@ class Po(Element, PeriodVI, GroupXVII):
 
     @property
     def common_valences(self):
-        return (0, 2), (2, 1)
+        return (0, 1), (2, 1)
 
     @property
     def valences_exceptions(self):
