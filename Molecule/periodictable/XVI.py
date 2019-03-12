@@ -62,7 +62,7 @@ class Po(Element, PeriodVI, GroupXVII):
                 (0, 1, ((1, 'Cl'), (1, 'Cl'), (1, 'Cl'), (1, 'Cl'))),
                 (0, 1, ((1, 'Br'), (1, 'Br'), (1, 'Br'), (1, 'Br'))),
                 (0, 1, ((1, 'I'), (1, 'I'), (1, 'I'), (1, 'I'))),
-                (0, 1, ((1, 'I'), (1, 'I'), (1, 'I'), (1, 'I'))))
+                (0, 1, ((1, 'O'), (1, 'O'), (1, 'O'), (1, 'O'))))
 
 
 class Lv(Element, PeriodVII, GroupXVII):
