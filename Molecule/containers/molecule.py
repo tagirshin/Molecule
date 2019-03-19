@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #  Copyright 2019 Ramil Nugmanov <stsouko@live.ru>
+#  Copyright 2019 Tagir Akhmetshin <tagirshin@gmail.com>
 #  This file is part of Molecule.
 #
 #  Molecule is free software; you can redistribute it and/or modify
@@ -26,7 +27,12 @@ class Molecule(Graph):
         Checks atoms' valences
         :return: numbers of atom with error
         """
+        errors = []
         for (n, atom), bonds in zip(self._atoms.items(), self._bonds.values()):
             valence = (sum([bonds.values()]), atom.multiplicity)
             if valence in atom.common_valences:
                 continue
+            elif (atom.charge, atom.multiplicity,
+                  tuple((y, self._atoms[x].atomic_number) for x, y in bonds.items())) not in atom.all_exceptions:
+                errors.append(n)
+        return errors
