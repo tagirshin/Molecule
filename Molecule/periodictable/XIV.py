@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #  Copyright 2019 Ramil Nugmanov <stsouko@live.ru>
+#  Copyright 2019 Dayana Bashirova <dayana.bashirova@yandex.ru>
 #  Copyright 2019 Tagir Akhmetshin <tagirshin@gmail.com>
 #  This file is part of Molecule.
 #
@@ -25,4 +26,109 @@ class GroupXIV:
     pass
 
 
-__all__ = ['GroupXIV']
+class Sn(Element, PeriodV, GroupXIV):
+    @property
+    def atomic_number(self):
+        return 50
+
+    @property
+    def atomic_mass(self):
+        return 118.710
+
+    @property
+    def electronegativity(self):
+        return 1.96
+
+    @property
+    def common_isotope(self):
+        return 120
+
+    @property
+    def max_isotope(self):
+        return 126
+
+    @property
+    def min_isotope(self):
+        return 112
+
+    @property
+    def common_valences(self):
+        return (0, 1), (2, 1), (4, 1)
+
+    @property
+    def valences_exceptions(self):
+        return ((-2, 1, ((1, 'O'), (1, 'O'), (1, 'O'), (1, 'O'), (1, 'O'), (1, 'O'))),
+                (-4, 1, ((1, 'O'), (1, 'O'), (1, 'O'), (1, 'O'), (1, 'O'), (1, 'O'))))
+
+
+class Pb(Element, PeriodVI, GroupXIV):
+    @property
+    def atomic_number(self):
+        return 82
+
+    @property
+    def atomic_mass(self):
+        return 207.2
+
+    @property
+    def electronegativity(self):
+        return 2.33
+
+    @property
+    def common_isotope(self):
+        return 208
+
+    @property
+    def max_isotope(self):
+        return 210
+
+    @property
+    def min_isotope(self):
+        return 202
+
+    @property
+    def common_valences(self):
+        return (0, 1), (2, 1), (4, 1)
+
+    @property
+    def valences_exceptions(self):
+        return ((-2, 1, ((1, 'O'), (1, 'O'), (1, 'O'), (1, 'O'), (1, 'O'), (1, 'O'))),
+                (-4, 1, ((1, 'O'), (1, 'O'), (1, 'O'), (1, 'O'), (1, 'O'), (1, 'O'))),
+                (0, 2, ((1, 'C'), (1, 'C'), (1, 'C'))))
+
+
+class Fl(Element, PeriodVII, GroupXIV):
+    @property
+    def atomic_number(self):
+        return 114
+
+    @property
+    def atomic_mass(self):
+        return 289
+
+    @property
+    def electronegativity(self):
+        return None
+
+    @property
+    def common_isotope(self):
+        return 289
+
+    @property
+    def max_isotope(self):
+        return 289
+
+    @property
+    def min_isotope(self):
+        return 289
+
+    @property
+    def common_valences(self):
+        return ()
+
+    @property
+    def valences_exceptions(self):
+        return ()
+
+
+__all__ = ['GroupXIV', 'Sn', 'Pb', 'Fl']
