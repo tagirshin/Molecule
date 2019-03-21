@@ -52,7 +52,7 @@ class La(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return ()
+        return (0, 2), (3, 1)
 
     @property
     def valences_exceptions(self):
@@ -86,7 +86,7 @@ class Ce(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return ()
+        return (0, 1),
 
     @property
     def valences_exceptions(self):
