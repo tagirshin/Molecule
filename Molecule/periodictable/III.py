@@ -24,6 +24,7 @@ from .periods import *
 class GroupIII:
     pass
 
+
 class Sc(Element, PeriodI, GroupIII):
     @property
     def atomic_number(self):
