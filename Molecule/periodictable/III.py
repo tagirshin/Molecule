@@ -52,7 +52,7 @@ class Ac(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return ()
+        return (0, 2), (3, 1)
 
     @property
     def valences_exceptions(self):
@@ -86,11 +86,15 @@ class Th(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return ()
+        return (0, 2), (4, 1)
 
     @property
     def valences_exceptions(self):
-        return ()
+        return ((0, 1, ((1, 'Br'), (1, 'Br'), (1, 'Br'))),
+                (0, 1, ((1, 'I'), (1, 'I'), (1, 'I'))),
+                (0, 1, ((1, 'Br'), (1, 'Br'))),
+                (0, 1, ((1, 'I'), (1, 'I'))),
+                (0, 1, ((1, 'H'), (1, 'H'))))
 
 
 class Pa(Element, PeriodI, GroupIII):
@@ -120,11 +124,12 @@ class Pa(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return ()
+        return (0, 2), (4, 1), (5, 1)
 
     @property
     def valences_exceptions(self):
-        return ()
+        return ((0, 1, ((2, 'O'),))
+                (0, 1, ((1, 'H'), (1, 'H'), (1, 'H'))))
 
 
 class U(Element, PeriodI, GroupIII):
