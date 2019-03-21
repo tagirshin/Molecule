@@ -25,6 +25,74 @@ class GroupIII:
     pass
 
 
+class Sc(Element, PeriodI, GroupIII):
+    @property
+    def atomic_number(self):
+        return 21
+
+    @property
+    def atomic_mass(self):
+        return 44.956
+
+    @property
+    def electronegativity(self):
+        return 1.36
+
+    @property
+    def common_isotope(self):
+        return 45
+
+    @property
+    def max_isotope(self):
+        return 48
+
+    @property
+    def min_isotope(self):
+        return 45
+
+    @property
+    def common_valences(self):
+        return (0, 2), (3, 1)
+
+    @property
+    def valences_exceptions(self):
+        return (-3, 1, ((1, 'F'), (1, 'F'), (1, 'F'), (1, 'F'), (1, 'F'), (1, 'F'))),
+
+
+class Y(Element, PeriodI, GroupIII):
+    @property
+    def atomic_number(self):
+        return 39
+
+    @property
+    def atomic_mass(self):
+        return 88.906
+
+    @property
+    def electronegativity(self):
+        return 1.22
+
+    @property
+    def common_isotope(self):
+        return 89
+
+    @property
+    def max_isotope(self):
+        return 87
+
+    @property
+    def min_isotope(self):
+        return 91
+
+    @property
+    def common_valences(self):
+        return (0, 2), (3, 1)
+
+    @property
+    def valences_exceptions(self):
+        return ()
+
+
 class La(Element, PeriodI, GroupIII):
     @property
     def atomic_number(self):
@@ -602,4 +670,5 @@ class Lu(Element, PeriodI, GroupIII):
         return ()
 
 
-__all__ = ['GroupIII', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu']
+__all__ = ['GroupIII', 'Sc', 'Y',
+           'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu']
