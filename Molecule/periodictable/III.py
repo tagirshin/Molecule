@@ -56,7 +56,7 @@ class Sc(Element, PeriodI, GroupIII):
 
     @property
     def valences_exceptions(self):
-        return ()
+        return (-3, 1, ((1, 'F'), (1, 'F'), (1, 'F'), (1, 'F'), (1, 'F'), (1, 'F'))),
 
 
 class Y(Element, PeriodI, GroupIII):
@@ -93,4 +93,4 @@ class Y(Element, PeriodI, GroupIII):
         return ()
 
 
-_all__ = ['GroupIII', 'Sc', 'Y']
+__all__ = ['GroupIII', 'Sc', 'Y']
