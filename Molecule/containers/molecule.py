@@ -18,6 +18,7 @@
 #
 from .graph import Graph
 from typing import List
+from collections import Counter
 
 
 class Molecule(Graph):
@@ -35,3 +36,13 @@ class Molecule(Graph):
                   tuple((v, self._atoms[k].atomic_number) for k, v in bonds.items())) not in atom.all_exceptions:
                 errors.append(n)
         return errors
+
+    @property
+    def charge(self) -> int:
+        """Charge on the whole molecule"""
+        return sum([atom.charge for atom in self._atoms.values()])
+
+    @property
+    def mass(self) -> float:
+        """Number of nuclides"""
+        return sum([atom.isotope for atom in self._atoms.values()])
