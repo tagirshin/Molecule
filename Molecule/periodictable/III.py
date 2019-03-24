@@ -154,7 +154,7 @@ class Ce(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return (0, 2), (3, 1)
+        return (0, 3), (3, 1)
 
     @property
     def valences_exceptions(self):
@@ -191,12 +191,12 @@ class Pr(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return (0, 2), (3, 1)
+        return (0, 4), (3, 2)
 
     @property
     def valences_exceptions(self):
-        return ((0, 1, ((1, 'F'), (1, 'F'), (1, 'F'), (1, 'F'))),
-                (0, 1, ((2, 'O'), (2, 'O'))))
+        return ((0, 2, ((1, 'F'), (1, 'F'), (1, 'F'), (1, 'F'))),
+                (0, 2, ((2, 'O'), (2, 'O'))))
 
 
 class Nd(Element, PeriodI, GroupIII):
@@ -226,7 +226,7 @@ class Nd(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return (0, 2), (3, 1)
+        return (0, 5), (3, 1)
 
     @property
     def valences_exceptions(self):
@@ -271,7 +271,7 @@ class Pm(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return (0, 2), (3, 1)
+        return (0, 6), (3, 6)
 
     @property
     def valences_exceptions(self):
@@ -305,7 +305,7 @@ class Sm(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return (0, 2), (3, 1)
+        return (0, 7), (3, 7)
 
     @property
     def valences_exceptions(self):
@@ -349,7 +349,7 @@ class Eu(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return (0, 2), (3, 1)
+        return (0, 8), (3, 1)
 
     @property
     def valences_exceptions(self):
@@ -393,7 +393,7 @@ class Gd(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return (0, 2), (3, 1)
+        return (0, 9), (3, 9)
 
     @property
     def valences_exceptions(self):
@@ -427,7 +427,7 @@ class Tb(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return (0, 2), (3, 1)
+        return (0, 6), (3, 1)
 
     @property
     def valences_exceptions(self):
@@ -462,7 +462,7 @@ class Dy(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return (0, 2), (3, 1)
+        return (0, 5), (3, 1)
 
     @property
     def valences_exceptions(self):
@@ -497,7 +497,7 @@ class Ho(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return (0, 2), (3, 1)
+        return (0, 4), (3, 1)
 
     @property
     def valences_exceptions(self):
@@ -541,7 +541,7 @@ class Er(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return (0, 2), (3, 1)
+        return (0, 3), (3, 1)
 
     @property
     def valences_exceptions(self):
@@ -619,7 +619,7 @@ class Yb(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return (0, 2), (3, 1)
+        return (0, 1), (3, 1)
 
     @property
     def valences_exceptions(self):
