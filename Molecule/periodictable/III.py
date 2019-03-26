@@ -154,7 +154,7 @@ class Ce(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return (0, 3), (3, 1)
+        return (0, 3), (3, 2)
 
     @property
     def valences_exceptions(self):
@@ -191,7 +191,7 @@ class Pr(Element, PeriodI, GroupIII):
 
     @property
     def common_valences(self):
-        return (0, 4), (3, 2)
+        return (0, 4), (3, 3)
 
     @property
     def valences_exceptions(self):
