@@ -42,6 +42,6 @@ class Molecule(Graph):
         return sum([atom.charge for atom in self._atoms.values()])
 
     @property
-    def mass(self) -> float:
+    def mass(self) -> int:
         """Number of nuclides"""
         return sum([atom.isotope for atom in self._atoms.values()])
