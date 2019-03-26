@@ -25,11 +25,6 @@ setup (
     version='0.1.0',
     packages=['Molecule', 'Molecule.algorithms', 'Molecule.containers', 'Molecule.periodictable'],
     url='http://github.com/cimm-kzn/Molecule',
-    license='LGPLv3',
-    install_requires=['pytest'],
-    author='Dr. Ramil Nugmanov',
-    author_email='stsouko@live.ru',
-    python_requires='>=3.7',
-    zip_safe=True
+    license='LGPLv3'
 
 )
