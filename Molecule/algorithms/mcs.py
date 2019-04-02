@@ -18,7 +18,7 @@
 #
 from collections import defaultdict
 from itertools import product, combinations
-from typing import Dict, List, Set, Hashable, Iterator
+from typing import Dict, List, Set, Hashable, Iterator, Optional
 
 def find_cliques(G):
 
@@ -100,7 +100,8 @@ def clique(graph: Dict[Hashable, Set[Hashable]]) -> Iterator[List[Hashable]]:
 
 
 class MCS:
-    def mcs_mapping(self, other) -> List[Dict]:
+
+    def all_mcs_mapping(self, other) -> List[Dict[int, int], ...]:
         product_graph = {}
         atoms_combinations = defaultdict(set)
 
@@ -151,3 +152,9 @@ class MCS:
                     mapping_list.append(c)
 
         return mapping_list
+
+
+    def mcs_mapping(self, other) -> Optional[Dict[int, int],  None]:
+        mappings = self.all_mcs_mapping()
+        if mappings:
+            return mappings[0]
