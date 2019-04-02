@@ -20,6 +20,45 @@ from collections import defaultdict
 from itertools import product, combinations
 from typing import Dict, List, Set, Hashable, Iterator
 
+def find_cliques(G):
+
+    if len(G) == 0:
+        return
+
+    adj = {u: {v for v in G[u] if v != u} for u in G}
+    Q = [None]
+
+    subg = set(G)
+    cand = set(G)
+    u = max(subg, key=lambda u: len(cand & adj[u]))
+    ext_u = cand - adj[u]
+    stack = []
+
+    try:
+        while True:
+            if ext_u:
+                q = ext_u.pop()
+                cand.remove(q)
+                Q[-1] = q
+                adj_q = adj[q]
+                subg_q = subg & adj_q
+                if not subg_q:
+                    yield Q[:]
+                else:
+                    cand_q = cand & adj_q
+                    if cand_q:
+                        stack.append((subg, cand, ext_u))
+                        Q.append(None)
+                        subg = subg_q
+                        cand = cand_q
+                        u = max(subg, key=lambda u: len(cand & adj[u]))
+                        ext_u = cand - adj[u]
+            else:
+                Q.pop()
+                subg, cand, ext_u = stack.pop()
+    except IndexError:
+        pass
+
 
 def clique(graph: Dict[Hashable, Set[Hashable]]) -> Iterator[List[Hashable]]:
     """ adopted from networkx algorithms.clique.find_cliques"""
@@ -61,7 +100,7 @@ def clique(graph: Dict[Hashable, Set[Hashable]]) -> Iterator[List[Hashable]]:
 
 
 class MCS:
-    def mcs_mapping(self, other) -> Dict[int, int]:
+    def mcs_mapping(self, other) -> List[Dict]:
         product_graph = {}
         atoms_combinations = defaultdict(set)
 
@@ -89,9 +128,26 @@ class MCS:
                             product_graph[node1].add(node2)
                             product_graph[node2].add(node1)
 
-        mapping = {}
+        max_bonds = 0
+        mapping_list = []
+        max_atoms = 0
+        for cliq in find_cliques(product_graph):
+            if len(cliq) >= max_atoms:
+                max_atoms = len(cliq)
+                c = dict(cliq)
+                atoms = set(c)
+                atom = atoms.pop()
+                bonds_count = 0
 
-        for cliq in clique(product_graph):
-            mapping = dict(cliq)
+                while atoms:
+                    other_neighbours = other._bonds[c[atom]]
+                    bonds_count += sum(c[x] in other_neighbours for x in atoms & self._bonds[atom].keys())
+                    atom = atoms.pop()
+                if bonds_count > max_bonds:
+                    max_bonds = bonds_count
+                    mapping_list = [c]
+                    max_atoms = len(cliq)
+                elif bonds_count == max_bonds:
+                    mapping_list.append(c)
 
-        return mapping
+        return mapping_list
