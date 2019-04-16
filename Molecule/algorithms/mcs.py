@@ -20,48 +20,10 @@ from collections import defaultdict
 from itertools import product, combinations
 from typing import Dict, List, Set, Hashable, Iterator, Optional
 
-def find_cliques(G):
-
-    if len(G) == 0:
-        return
-
-    adj = {u: {v for v in G[u] if v != u} for u in G}
-    Q = [None]
-
-    subg = set(G)
-    cand = set(G)
-    u = max(subg, key=lambda u: len(cand & adj[u]))
-    ext_u = cand - adj[u]
-    stack = []
-
-    try:
-        while True:
-            if ext_u:
-                q = ext_u.pop()
-                cand.remove(q)
-                Q[-1] = q
-                adj_q = adj[q]
-                subg_q = subg & adj_q
-                if not subg_q:
-                    yield Q[:]
-                else:
-                    cand_q = cand & adj_q
-                    if cand_q:
-                        stack.append((subg, cand, ext_u))
-                        Q.append(None)
-                        subg = subg_q
-                        cand = cand_q
-                        u = max(subg, key=lambda u: len(cand & adj[u]))
-                        ext_u = cand - adj[u]
-            else:
-                Q.pop()
-                subg, cand, ext_u = stack.pop()
-    except IndexError:
-        pass
-
 
 def clique(graph: Dict[Hashable, Set[Hashable]]) -> Iterator[List[Hashable]]:
     """ adopted from networkx algorithms.clique.find_cliques"""
+
     subgraph = {x for x, y in graph.items() if y}  # skip isolated nodes
     if not subgraph:
         return  # empty or fully disconnected
@@ -86,8 +48,7 @@ def clique(graph: Dict[Hashable, Set[Hashable]]) -> Iterator[List[Hashable]]:
             else:
                 neighbors_candidates = candidates & neighbors
                 if neighbors_candidates:
-                    if roots:
-                        stack.append((subgraph, candidates, roots))
+                    stack.append((subgraph, candidates, roots))
                     clique_atoms.append(None)
                     subgraph = neighbors_subgraph
                     candidates = neighbors_candidates
@@ -101,7 +62,7 @@ def clique(graph: Dict[Hashable, Set[Hashable]]) -> Iterator[List[Hashable]]:
 
 class MCS:
 
-    def all_mcs_mapping(self, other) -> List[Dict[int, int], ...]:
+    def all_mcs_mapping(self, other) -> List[Dict[int, int]]:
         product_graph = {}
         atoms_combinations = defaultdict(set)
 
@@ -132,7 +93,7 @@ class MCS:
         max_bonds = 0
         mapping_list = []
         max_atoms = 0
-        for cliq in find_cliques(product_graph):
+        for cliq in clique(product_graph):
             if len(cliq) >= max_atoms:
                 max_atoms = len(cliq)
                 c = dict(cliq)
@@ -153,8 +114,7 @@ class MCS:
 
         return mapping_list
 
-
-    def mcs_mapping(self, other) -> Optional[Dict[int, int],  None]:
-        mappings = self.all_mcs_mapping()
+    def mcs_mapping(self, other) -> Optional[Dict[int, int]]:
+        mappings = self.all_mcs_mapping(other)
         if mappings:
             return mappings[0]
