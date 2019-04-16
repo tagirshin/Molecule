@@ -34,7 +34,7 @@ class Molecule(Graph):
             elif (atom.charge, atom.multiplicity,
                   tuple((v, self._atoms[k].atomic_number) for k, v in bonds.items())) not in atom.all_exceptions:
                 errors.append(n)
-        return errrs
+        return errors
 
     @property
     def charge(self) -> int:

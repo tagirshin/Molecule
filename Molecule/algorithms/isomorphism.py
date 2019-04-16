@@ -46,6 +46,26 @@ class Isomorphism:
                     nums2.add(num2)
                 possible_matches[num1] = nums2
 
+    def plain_subgraph(self):
+        start, atom = min(self._atoms.items())
+        stack = [(x, self._atoms[x], start, bond) for x, bond in self._bonds[start].items()]
+        seen = {start}
+        plain_graph = [(start, atom)]
+        while stack:
+            front = stack.pop()
+            front_atom = front[0]
+            if front_atom not in seen:
+                plain_graph.append(front)
+                *_, back, bond = front
+                for x in self._bonds[front_atom]:
+                    if x != back:
+                        if x not in seen:
+                            stack.append((x, self._atoms[x], front_atom, bond))
+                        else:
+                            plain_graph.append((x, None, front_atom, bond))
+                seen.add(front_atom)
+        return plain_graph
+
 
 
 
