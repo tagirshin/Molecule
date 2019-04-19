@@ -21,7 +21,7 @@ from collections import Counter
 
 
 class Isomorphism:
-    def get_substructure_mapping(self, other) -> Dict[int, int]:
+    def _get_substructure_mapping(self, other) -> Dict[int, int]:
         brutto_self = Counter(self._atoms.values())
         brutto_other = Counter(other._atoms.values())
         if brutto_self.keys() <= brutto_other.keys():
@@ -65,6 +65,14 @@ class Isomorphism:
                             plain_graph.append((x, None, front_atom, bond))
                 seen.add(front_atom)
         return plain_graph
+
+    def substructure_mappings(self, other):
+        plain_self = self.plain_subgraph()
+        n, atom = plain_self[0]
+        for m, a in other.atoms():
+            if a == atom:
+
+
 
 
 

@@ -59,6 +59,9 @@ class Graph(Components, MCS, Isomorphism):
                 if atom2 not in seen_atoms:
                     yield atom1, atom2, bond
 
+    def atoms(self) -> Tuple[int, Element]:
+        return iter(self._atoms.items())
+
 
 
 

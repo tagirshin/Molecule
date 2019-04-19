@@ -45,4 +45,5 @@ m3.add_bond(6, 1, 1)
 m3.add_bond(1, 7, 1)
 m3.add_bond(7, 8, 1)
 m3.add_bond(8, 4, 1)
-print(m3.plain_subgraph())
+
+print(next(m1.substructure_mappings(m2)))
