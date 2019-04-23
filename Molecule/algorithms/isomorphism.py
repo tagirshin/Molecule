@@ -68,9 +68,61 @@ class Isomorphism:
 
     def substructure_mappings(self, other):
         plain_self = self.plain_subgraph()
+        stack = []
+        path = []
+        for number, atom in other._atoms.items():
+            if atom == plain_self[0][1]:
+                stack.append((number, 0))
+        while stack and ((len(path) + 1) <= len(self._atoms)):
+            current = stack.pop()
+            neighbours = []
+            if len(path) == (len(self._atoms) - 1):
+                yield path + [current[0]]
+            else:
+                if len(path) != current[1]:
+                    path = path[:current[1]]
+                for neighbour in other._bonds[current[0]]:
+                    if other._atoms[neighbour] == plain_self[len(path)+1][1]:
+                        stack.append((neighbour, len(path)+1))
+                        neighbours.append(neighbour)
+                if neighbours:
+                    path.append(current[0])
+
+
+
+
+
+
+
+
+
+
+
+        """
         n, atom = plain_self[0]
+        d = []
+        s_o = {}
         for m, a in other.atoms():
             if a == atom:
+                d.append(m)
+                s_o[n] = m
+                stack = [(x, other._atoms[x], a, bond, len(d)) for x, bond in other._bonds[a].items()]
+                while stack:
+                    front = stack.pop()
+                    next_self = plain_self[front[-1]]
+                    if next_self[1] is None:
+                        if other._bonds[s_o[next_self[0]]].get(s_o[next_self[2]]) == next_self[-1]:
+                            pass
+                    elif next_self[1] == front[1] and next_self[-1] == front[-2]:
+                        s_o[next_self[0]]=front[0]
+                        d.append(front[0])
+                    else:
+                        pass
+        """
+
+
+
+
 
 
 
