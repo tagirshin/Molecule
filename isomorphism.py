@@ -77,10 +77,12 @@ m5.add_atom(N(), 2)
 m5.add_atom(N(), 3)
 m5.add_atom(N(), 4)
 m5.add_atom(Cl(), 5)
+m5.add_atom(N(), 6)
 
 m5.add_bond(1, 2, 1)
 m5.add_bond(2, 3, 1)
 m5.add_bond(3, 4, 1)
 m5.add_bond(4, 5, 1)
+m5.add_bond(3, 6, 1)
 
 print(list(m5.substructure_mappings(m4)))

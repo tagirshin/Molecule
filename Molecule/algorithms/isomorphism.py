@@ -68,25 +68,30 @@ class Isomorphism:
 
     def substructure_mappings(self, other):
         plain_self = self.plain_subgraph()
+        plain_self_depth = {v[0]:k for k,v in enumerate(plain_self)}
         stack = []
         path = []
         for number, atom in other._atoms.items():
             if atom == plain_self[0][1]:
                 stack.append((number, 0))
-        while stack and ((len(path) + 1) <= len(self._atoms)):
+        while stack:
             current = stack.pop()
             neighbours = []
-            if len(path) == (len(self._atoms) - 1):
+            if current[1] == len(self._atoms) - 1:
                 yield path + [current[0]]
             else:
                 if len(path) != current[1]:
                     path = path[:current[1]]
-                for neighbour in other._bonds[current[0]]:
-                    if other._atoms[neighbour] == plain_self[len(path)+1][1]:
-                        stack.append((neighbour, len(path)+1))
+                if plain_self[current[1]+1][2] != plain_self[current[1]][0]:
+                    fork = path[plain_self_depth[plain_self[current[1]+1][2]]]
+                else:
+                    fork = current[0]
+                path.append(current[0])
+                for neighbour in other._bonds[fork]:
+                    if other._atoms[neighbour] == plain_self[len(path)][1] and (neighbour not in path):
+                        stack.append((neighbour, len(path)))
                         neighbours.append(neighbour)
-                if neighbours:
-                    path.append(current[0])
+
 
 
 
