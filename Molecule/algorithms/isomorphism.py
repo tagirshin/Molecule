@@ -17,7 +17,7 @@
 #  along with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 from typing import Dict
-from collections import Counter
+from collections import Counter, defaultdict
 
 
 class Isomorphism:
@@ -51,46 +51,54 @@ class Isomorphism:
         stack = [(x, self._atoms[x], start, bond) for x, bond in self._bonds[start].items()]
         seen = {start}
         plain_graph = [(start, atom)]
+        closures = defaultdict(list)
         while stack:
             front = stack.pop()
             front_atom = front[0]
             if front_atom not in seen:
                 plain_graph.append(front)
-                *_, back, bond = front
-                for x in self._bonds[front_atom]:
+                back = front[2]
+                for x, bond in self._bonds[front_atom].items():
                     if x != back:
                         if x not in seen:
                             stack.append((x, self._atoms[x], front_atom, bond))
                         else:
-                            plain_graph.append((x, None, front_atom, bond))
+                            closures[front_atom].append((x, bond))
                 seen.add(front_atom)
-        return plain_graph
+        return plain_graph, closures
 
     def substructure_mappings(self, other):
-        plain_self = self.plain_subgraph()
+        plain_self, closures_self = self.plain_subgraph()
         plain_self_depth = {v[0]:k for k,v in enumerate(plain_self)}
         stack = []
         path = []
+        mapping = {}
+        reversed_mapping = {}
         for number, atom in other._atoms.items():
             if atom == plain_self[0][1]:
                 stack.append((number, 0))
         while stack:
             current = stack.pop()
-            neighbours = []
             if current[1] == len(self._atoms) - 1:
-                yield path + [current[0]]
+                yield {plain_self[current[1]][0]:current[0], **mapping}
             else:
                 if len(path) != current[1]:
+                    for x in path[current[1]:]:
+                        del mapping[reversed_mapping[x]]
                     path = path[:current[1]]
                 if plain_self[current[1]+1][2] != plain_self[current[1]][0]:
                     fork = path[plain_self_depth[plain_self[current[1]+1][2]]]
                 else:
                     fork = current[0]
                 path.append(current[0])
-                for neighbour in other._bonds[fork]:
-                    if other._atoms[neighbour] == plain_self[len(path)][1] and (neighbour not in path):
+                mapping[plain_self[current[1]][0]] = current[0]
+                reversed_mapping[current[0]] = plain_self[current[1]][0]
+                for neighbour, bond in other._bonds[fork].items():
+                    if neighbour not in path and bond == plain_self[len(path)][3] \
+                            and other._atoms[neighbour] == plain_self[len(path)][1] \
+                            and all((other._bonds[mapping[atom]].get(neighbour) == bond) for atom, bond in closures_self[plain_self[len(path)][0]]):
                         stack.append((neighbour, len(path)))
-                        neighbours.append(neighbour)
+
 
 
 
