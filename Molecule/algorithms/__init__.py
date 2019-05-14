@@ -18,6 +18,7 @@
 #
 from .components import Components
 from .mcs import MCS
+from .isomorphism import Isomorphism
 
 
-__all__ = ['Components', 'MCS']
+__all__ = ['Components', 'MCS', 'Isomorphism']

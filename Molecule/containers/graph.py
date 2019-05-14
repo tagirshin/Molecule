@@ -16,11 +16,11 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with this program; if not, see <https://www.gnu.org/licenses/>.
 #
-from ..algorithms import Components, MCS
+from ..algorithms import Components, MCS, Isomorphism
 from ..periodictable.element import Element
 
 
-class Graph(Components, MCS):
+class Graph(Components, MCS, Isomorphism):
     def __init__(self):
         self._bonds = {}
         self._atoms = {}
