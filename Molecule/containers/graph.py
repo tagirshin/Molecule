@@ -61,7 +61,3 @@ class Graph(Components, MCS, Isomorphism):
 
     def atoms(self) -> Tuple[int, Element]:
         return iter(self._atoms.items())
-
-
-
-
