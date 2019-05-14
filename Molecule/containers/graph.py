@@ -16,6 +16,7 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with this program; if not, see <https://www.gnu.org/licenses/>.
 #
+from typing import Tuple
 from ..algorithms import Components, MCS, Isomorphism
 from ..periodictable.element import Element
 
@@ -46,3 +47,17 @@ class Graph(Components, MCS, Isomorphism):
         except TypeError:
             raise ValueError('integer required')
         self._bonds[num1][num2] = self._bonds[num2][num1] = bond
+
+    def __bool__(self):
+        return bool(self._atoms)
+
+    def bonds(self) -> Tuple[int, int, int]:
+        seen_atoms = set()
+        for atom1, bonds in self._bonds.items():
+            seen_atoms.add(atom1)
+            for atom2, bond in bonds.items():
+                if atom2 not in seen_atoms:
+                    yield atom1, atom2, bond
+
+    def atoms(self) -> Tuple[int, Element]:
+        return iter(self._atoms.items())
